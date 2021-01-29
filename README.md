@@ -1,4 +1,7 @@
 # Asst1-Malloc
+
+Developed with https://github.com/rajdesai925/
+
 This implementation of malloc() and free() works by simulating a block of memory using an array.
 
 The memory array is initialized with metadata which indicates that there is one free block available. Metadata consists of a 1-byte character, 'f' or 'd', to indicate whether the block of memory is free or allocated for data and a 4-byte integer which stores the size of the block of memory (not including the size of the metadata). For example, when memory is initialized, the first 5 bytes of the array are set to "f4091" assuming the size of the memory array is set to 4096 bytes. If 100 bytes of data were then allocated, the layout of the memory would be "d100" in the first 5 bytes followed by 100 bytes of allocated space for data. After these 100 bytes, another 5 bytes would store "f3986" (4096 bytes total - 5 bytes metadata - 100 bytes allocated for data - 5 bytes metadata = 3986 bytes remaining). The malloc() function works as a "first free" algorithm, meaning it selects the first free block of sufficient size to allocate for data. If no sufficently sized blocks are found, no memory is allocated and an error is reported(malloc also returns NULL to let the user's code know there was an issue). A request for less than one byte to be allocated will also report an error. Malloc() returns a pointer to the first byte of the allocated data block.
